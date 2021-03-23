@@ -1,8 +1,9 @@
 #include "TitleScene.h"
 
-TitleScene::TitleScene()
+TitleScene::TitleScene(SDL_Renderer *renderer)
 {
 	nextScene = -1;
+	this->renderer = renderer;
 }
 
 bool TitleScene::loadMedia()
@@ -21,7 +22,7 @@ void TitleScene::update(Timer deltaTime, std::vector<SDL_Keycode> keysPressed)
 	}
 }
 
-void TitleScene::draw(SDL_Renderer *renderer)
+void TitleScene::draw()
 {
 	SDL_SetRenderDrawColor(renderer, 0x88, 0x88, 0x88, 0xFF);
 	SDL_RenderClear(renderer);

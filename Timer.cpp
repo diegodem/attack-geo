@@ -13,9 +13,9 @@ void Timer::start()
 
 void Timer::updateDT()
 {
-	while (previousTicks + 17 <= SDL_GetTicks())
+	while (previousTicks + 8 <= SDL_GetTicks())
 	{
-		previousTicks += 17;
+		previousTicks += 8;
 	}
 }
 

@@ -1,10 +1,9 @@
 #include "Engine.h"
 #include <vector>
 
-
 Engine::Engine()
 {
-	
+
 }
 
 void Engine::loop()
@@ -32,7 +31,7 @@ void Engine::loop()
 		deltaTime.updateDT();
 		keysPressed.clear();
 
-		currentScene->draw(renderer);
+		currentScene->draw();
 
 		if (currentScene->getNextScene() != -1)
 		{
@@ -46,12 +45,12 @@ void Engine::loadScene(SceneList scene)
 {
 	if (scene == SceneList::TITLE_SCENE)
 	{
-		titleScene = TitleScene();
+		titleScene = TitleScene(renderer);
 		currentScene = &titleScene;
 	}
 	else if (scene == SceneList::GAME_SCENE)
 	{
-		gameScene = GameScene();
+		gameScene = GameScene(renderer);
 		currentScene = &gameScene;
 	}
 }

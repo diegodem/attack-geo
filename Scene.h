@@ -1,6 +1,8 @@
 #pragma once
 #include <SDL.h>
+#include <SDL_image.h>
 #include <vector>
+#include <string>
 #include "SceneList.h"
 #include "Timer.h"
 
@@ -9,8 +11,10 @@ class Scene
 public:
 	virtual bool loadMedia();
 	virtual void update(Timer deltaTime, std::vector<SDL_Keycode> keysPressed);
-	virtual void draw(SDL_Renderer *renderer);
+	virtual void draw();
 	int getNextScene();
+	SDL_Texture *loadTexture(std::string path);
 protected:
 	int nextScene;
+	SDL_Renderer *renderer;
 };
