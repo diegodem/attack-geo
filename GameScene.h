@@ -12,5 +12,5 @@ public:
 private:
 	SDL_Rect rect1;
 	SDL_Rect rect2;
-	SDL_Texture *textureGeo[1] = { 0 };
+	SDL_Texture *textureGeo[10] = { 0 };
 };
