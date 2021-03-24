@@ -3,8 +3,12 @@
 GameScene::GameScene(SDL_Renderer *renderer)
 {
 	nextScene = -1;
+	energyPlayer = 1;
 	rect1 = { -96, 192, 96, 96 };
 	rect2 = { -96, 480, 96, 96 };
+	generateFigure(0);
+	generateFigure(1);
+	generateFigure(2);
 	rectPlayer = { 96, 336, 96, 96 };
 	this->renderer = renderer;
 	loadMedia();
@@ -12,7 +16,7 @@ GameScene::GameScene(SDL_Renderer *renderer)
 	spawnTimerStarted = false;
 	energy1 = 0;
 	energy2 = 0;
-	energyPlayer = 1;
+	
 	level = 1;
 
 }
@@ -31,52 +35,38 @@ void GameScene::update(Timer deltaTime, std::vector<SDL_Keycode> keysPressed)
 			moveDown();
 		}
 	}
-	rect1.x = rect1.x - (3 + level) * (int)(125.f * deltaTime.getTime());
-
-	rect2.x = rect2.x - (3 + level) * (int)(125.f * deltaTime.getTime());
-	if (rect1.x < 0)
+	for (int i = 0; i < 3; i++)
 	{
-		if (!spawnTimerStarted)
+		shapes[i].getRect()->x -= (3 + level) * (int)(125.f * deltaTime.getTime());
+		if (shapes[i].getRect()->x > 10000)
 		{
-			spawnTimer.start();
-			spawnTimerStarted = true;
-		}
-		else if (spawnTimer.getTime() > 1.f)
-		{
-			generateFigures();
-			spawnTimerStarted = false;
-		}
 
-		
+			if (shapes[i].getSpawnTime() <= shapes[i].getSpawnTimer().getTime())
+			{
+				shapes[i].getRect()->x = 1024;
+				shapes[i].spawned();
+			}
+
+		}
+		else if (shapes[i].getRect()->x < -96)
+		{
+			generateFigure(i);
+		}
+		if (checkCollision(&rectPlayer, shapes[i].getRect()))
+		{
+			if (energyPlayer > shapes[i].getEnergy())
+			{
+				energyPlayer++;
+				shapes[i].getRect()->x = -96;
+			}
+			else if (energyPlayer < shapes[i].getEnergy())
+			{
+				energyPlayer--;
+				shapes[i].getRect()->x = -96;
+			}
+		}
 	}
 
-	if (checkCollision(&rectPlayer, &rect1))
-	{
-		if (energyPlayer > energy1)
-		{
-			energyPlayer++;
-			rect1.x = -96;
-		}
-		else if (energyPlayer < energy1)
-		{
-			energyPlayer--;
-			rect1.x = -96;
-		}
-	}
-
-	if (checkCollision(&rectPlayer, &rect2))
-	{
-		if (energyPlayer > energy2)
-		{
-			energyPlayer++;
-			rect2.x = -96;
-		}
-		else if (energyPlayer < energy2)
-		{
-			energyPlayer--;
-			rect2.x = -96;
-		}
-	}
 
 	if (energyPlayer == 10)
 	{
@@ -96,11 +86,10 @@ void GameScene::draw()
 	SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderClear(renderer);
 	SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0xFF);
-	//SDL_RenderFillRect(renderer, &rect1);
-	SDL_RenderCopy(renderer, textureGeo[energy1], NULL, &rect1);
-	//SDL_RenderFillRect(renderer, &rect2);
-	SDL_RenderCopy(renderer, textureGeo[energy2], NULL, &rect2);
-
+	for (int i = 0; i < 3; i++)
+	{
+		SDL_RenderCopy(renderer, textureGeo[shapes[i].getEnergy()], NULL, shapes[i].getRect());
+	}
 	SDL_RenderCopy(renderer, textureGeo[energyPlayer], NULL, &rectPlayer);
 	SDL_RenderPresent(renderer);
 }
@@ -181,13 +170,9 @@ bool GameScene::loadMedia()
 	return true;
 }
 
-void GameScene::generateFigures()
+void GameScene::generateFigure(int position)
 {
-	energy1 = rand() % std::min(energyPlayer + 3, 10);
-	energy2 = rand() % std::min(energyPlayer + 3, 10);
-	rect1.x = 1024;
-	rect2.x = 1024;
-
+	shapes[position] = Shape(energyPlayer, position);
 }
 
 void GameScene::moveUp()

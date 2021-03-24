@@ -147,6 +147,7 @@
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="Shape.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="TitleScene.cpp" />
   </ItemGroup>
@@ -156,6 +157,7 @@
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneList.h" />
+    <ClInclude Include="Shape.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="TitleScene.h" />
   </ItemGroup>

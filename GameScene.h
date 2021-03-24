@@ -1,5 +1,6 @@
 #pragma once
 #include "Scene.h"
+#include "Shape.h"
 #include <time.h>
 
 class GameScene : public Scene
@@ -10,7 +11,7 @@ public:
 	bool loadMedia() override;
 	void update(Timer deltaTime, std::vector<SDL_Keycode> keysPressed) override;
 	void draw() override;
-	void generateFigures();
+	void generateFigure(int position);
 	void moveUp();
 	void moveDown();
 	static bool checkCollision(SDL_Rect *rectA, SDL_Rect *rectB);
@@ -25,4 +26,5 @@ private:
 	Timer spawnTimer;
 	bool spawnTimerStarted;
 	int level;
+	Shape shapes[3];
 };
