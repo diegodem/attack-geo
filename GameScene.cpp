@@ -183,8 +183,8 @@ bool GameScene::loadMedia()
 
 void GameScene::generateFigures()
 {
-	energy1 = rand() % 10;
-	energy2 = rand() % 10;
+	energy1 = rand() % std::min(energyPlayer + 3, 10);
+	energy2 = rand() % std::min(energyPlayer + 3, 10);
 	rect1.x = 1024;
 	rect2.x = 1024;
 

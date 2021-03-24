@@ -3,6 +3,7 @@
 #include <SDL_image.h>
 #include <vector>
 #include <string>
+#include <algorithm>
 #include "SceneList.h"
 #include "Timer.h"
 
