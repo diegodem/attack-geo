@@ -53,6 +53,11 @@ void Engine::loadScene(SceneList scene)
 		gameScene = GameScene(renderer);
 		currentScene = &gameScene;
 	}
+	else if (scene == SceneList::GAME_OVER_SCENE)
+	{
+		gameOverScene = GameOverScene(renderer);
+		currentScene = &gameOverScene;
+	}
 }
 
 bool Engine::init()
