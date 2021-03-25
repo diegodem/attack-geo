@@ -10,4 +10,6 @@ public:
 	bool loadMedia() override;
 	void update(Timer deltaTime, std::vector<SDL_Keycode> keysPressed) override;
 	void draw() override;
+private:
+	SDL_Texture *backgroundTexture = NULL;
 };
