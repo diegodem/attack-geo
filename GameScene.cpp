@@ -306,3 +306,29 @@ bool GameScene::checkCollision(SDL_Rect *rectA, SDL_Rect *rectB)
 	return true;
 }
 
+void GameScene::close()
+{
+	for (int i = 0; i < 10; i++)
+	{
+		SDL_DestroyTexture(textureGeo[i]);
+		textureGeo[i] = NULL;
+	}
+
+	TTF_CloseFont(generalFont);
+	generalFont = NULL;
+
+	Mix_FreeChunk(changeSound);
+	changeSound = NULL;
+
+	Mix_FreeChunk(hurtSound);
+	hurtSound = NULL;
+
+	Mix_FreeChunk(levelUpSound);
+	levelUpSound = NULL;
+
+	Mix_FreeChunk(growSound);
+	growSound = NULL;
+
+	Mix_FreeMusic(music);
+	music = NULL;
+}

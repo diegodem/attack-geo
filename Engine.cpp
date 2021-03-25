@@ -122,4 +122,9 @@ void Engine::close()
 	SDL_DestroyWindow(window);
 	renderer = NULL;
 	window = NULL;
+
+	Mix_Quit();
+	TTF_Quit();
+	IMG_Quit();
+	SDL_Quit();
 }

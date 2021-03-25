@@ -11,6 +11,7 @@ public:
 	bool loadMedia() override;
 	void update(Timer deltaTime, std::vector<SDL_Keycode> keysPressed) override;
 	void draw() override;
+	void close() override;
 	void generateFigure(int position);
 	void moveUp();
 	void moveDown();

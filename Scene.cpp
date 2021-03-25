@@ -21,6 +21,11 @@ void Scene::draw()
 	
 }
 
+void Scene::close()
+{
+
+}
+
 SDL_Texture *Scene::loadTexture(std::string path)
 {
 	//The final texture
