@@ -31,4 +31,6 @@ private:
 	Mix_Chunk *hurtSound = NULL;
 	Mix_Chunk *growSound = NULL;
 	Mix_Chunk *levelUpSound = NULL;
+
+	Mix_Music *music = NULL;
 };

@@ -21,6 +21,12 @@ GameScene::GameScene(SDL_Renderer *renderer)
 	
 	level = 1;
 
+	if (Mix_PlayingMusic() == 0)
+	{
+		//Play the music
+		Mix_PlayMusic(music, -1);
+	}
+
 }
 
 
@@ -87,6 +93,7 @@ void GameScene::update(Timer deltaTime, std::vector<SDL_Keycode> keysPressed)
 	}
 	else if (energyPlayer < 1)
 	{
+		Mix_HaltMusic();
 		nextScene = (int)SceneList::GAME_OVER_SCENE;
 	}
 	
@@ -224,6 +231,13 @@ bool GameScene::loadMedia()
 	if (growSound == NULL)
 	{
 		printf("Failed to load grow sound effect! SDL_mixer Error: %s\n", Mix_GetError());
+		success = false;
+	}
+
+	music = Mix_LoadMUS("Music/music_trim.wav");
+	if (music == NULL)
+	{
+		printf("Failed to load beat music! SDL_mixer Error: %s\n", Mix_GetError());
 		success = false;
 	}
 	return true;
