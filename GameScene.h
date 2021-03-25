@@ -21,10 +21,14 @@ private:
 	int energyPlayer;
 	int level;
 	Shape shapes[3];
-	TTF_Font *generalFont;
+	TTF_Font *generalFont = NULL;
 	SDL_Rect levelRect;
 	std::string levelStr;
 	SDL_Color color;
-	SDL_Surface *surfaceLevel;
-	SDL_Texture *textureLevel;
+	SDL_Surface *surfaceLevel = NULL;
+	SDL_Texture *textureLevel = NULL;
+	Mix_Chunk *changeSound = NULL;
+	Mix_Chunk *hurtSound = NULL;
+	Mix_Chunk *growSound = NULL;
+	Mix_Chunk *levelUpSound = NULL;
 };

@@ -59,11 +59,13 @@ void GameScene::update(Timer deltaTime, std::vector<SDL_Keycode> keysPressed)
 			if (energyPlayer > shapes[i].getEnergy())
 			{
 				energyPlayer++;
+				Mix_PlayChannel(-1, growSound, 0);
 				shapes[i].getRect()->x = -96;
 			}
 			else if (energyPlayer < shapes[i].getEnergy())
 			{
 				energyPlayer--;
+				Mix_PlayChannel(-1, hurtSound, 0);
 				shapes[i].getRect()->x = -96;
 			}
 		}
@@ -73,6 +75,7 @@ void GameScene::update(Timer deltaTime, std::vector<SDL_Keycode> keysPressed)
 	if (energyPlayer == 10)
 	{
 		level++;
+		Mix_PlayChannel(-1, levelUpSound, 0);
 		energyPlayer = 1;
 		generateFigure(0);
 		generateFigure(1);
@@ -82,7 +85,7 @@ void GameScene::update(Timer deltaTime, std::vector<SDL_Keycode> keysPressed)
 			shapes[i].increaseSpawnTime();
 		}
 	}
-	if (energyPlayer < 1)
+	else if (energyPlayer < 1)
 	{
 		nextScene = (int)SceneList::GAME_OVER_SCENE;
 	}
@@ -194,6 +197,35 @@ bool GameScene::loadMedia()
 
 	//Load fonts
 	generalFont = TTF_OpenFont("Fonts/SigmarOne-Regular.ttf", 40);
+
+	//Load sounds
+	changeSound = Mix_LoadWAV("Sounds/change.wav");
+	if (changeSound == NULL)
+	{
+		printf("Failed to load change sound effect! SDL_mixer Error: %s\n", Mix_GetError());
+		success = false;
+	}
+
+	hurtSound = Mix_LoadWAV("Sounds/hurt.wav");
+	if (hurtSound == NULL)
+	{
+		printf("Failed to load hurt sound effect! SDL_mixer Error: %s\n", Mix_GetError());
+		success = false;
+	}
+
+	levelUpSound = Mix_LoadWAV("Sounds/levelup.wav");
+	if (levelUpSound == NULL)
+	{
+		printf("Failed to load levelup sound effect! SDL_mixer Error: %s\n", Mix_GetError());
+		success = false;
+	}
+
+	growSound = Mix_LoadWAV("Sounds/grow.wav");
+	if (growSound == NULL)
+	{
+		printf("Failed to load grow sound effect! SDL_mixer Error: %s\n", Mix_GetError());
+		success = false;
+	}
 	return true;
 }
 
@@ -207,6 +239,7 @@ void GameScene::moveUp()
 	if (rectPlayer.y > 192)
 	{
 		rectPlayer.y -= 144;
+		Mix_PlayChannel(-1, changeSound, 0);
 	}
 }
 
@@ -215,6 +248,7 @@ void GameScene::moveDown()
 	if (rectPlayer.y < 480)
 	{
 		rectPlayer.y += 144;
+		Mix_PlayChannel(-1, changeSound, 0);
 	}
 }
 
