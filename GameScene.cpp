@@ -112,6 +112,9 @@ void GameScene::draw()
 	SDL_RenderCopy(renderer, textureLevel, NULL, &levelRect);
 
 	SDL_RenderPresent(renderer);
+
+	SDL_DestroyTexture(textureLevel);
+	SDL_FreeSurface(surfaceLevel);
 }
 
 bool GameScene::loadMedia()
