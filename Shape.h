@@ -15,6 +15,7 @@ public:
 	float getSpawnTime();
 	float spawnTime;
 	void spawned();
+	void increaseSpawnTime();
 private:
 	SDL_Rect rect;
 	int energy;

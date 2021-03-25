@@ -4,18 +4,20 @@ GameScene::GameScene(SDL_Renderer *renderer)
 {
 	nextScene = -1;
 	energyPlayer = 1;
-	rect1 = { -96, 192, 96, 96 };
-	rect2 = { -96, 480, 96, 96 };
 	generateFigure(0);
 	generateFigure(1);
 	generateFigure(2);
+	for (int i = 0; i < 3; i++)
+	{
+		shapes[i].increaseSpawnTime();
+	}
 	rectPlayer = { 96, 336, 96, 96 };
 	this->renderer = renderer;
 	loadMedia();
 	srand(time(NULL));
-	spawnTimerStarted = false;
-	energy1 = 0;
-	energy2 = 0;
+
+	levelRect = { 96, 48, 96, 96 };
+	color = { 0, 0, 0, 0 };
 	
 	level = 1;
 
@@ -72,6 +74,13 @@ void GameScene::update(Timer deltaTime, std::vector<SDL_Keycode> keysPressed)
 	{
 		level++;
 		energyPlayer = 1;
+		generateFigure(0);
+		generateFigure(1);
+		generateFigure(2);
+		for (int i = 0; i < 3; i++)
+		{
+			shapes[i].increaseSpawnTime();
+		}
 	}
 	if (energyPlayer < 1)
 	{
@@ -83,14 +92,25 @@ void GameScene::update(Timer deltaTime, std::vector<SDL_Keycode> keysPressed)
 
 void GameScene::draw()
 {
-	SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+	SDL_SetRenderDrawColor(renderer, 0xCC, 0xCC, 0xCC, 0xFF);
 	SDL_RenderClear(renderer);
-	SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0xFF);
 	for (int i = 0; i < 3; i++)
 	{
 		SDL_RenderCopy(renderer, textureGeo[shapes[i].getEnergy()], NULL, shapes[i].getRect());
 	}
 	SDL_RenderCopy(renderer, textureGeo[energyPlayer], NULL, &rectPlayer);
+
+	levelStr.assign("Level ");
+	levelStr.append(std::to_string(level));
+
+	surfaceLevel = TTF_RenderText_Solid(generalFont, levelStr.c_str(), color);
+	textureLevel = SDL_CreateTextureFromSurface(renderer, surfaceLevel);
+
+	levelRect.w = surfaceLevel->w;
+	levelRect.h = surfaceLevel->h;
+
+	SDL_RenderCopy(renderer, textureLevel, NULL, &levelRect);
+
 	SDL_RenderPresent(renderer);
 }
 
@@ -98,6 +118,7 @@ bool GameScene::loadMedia()
 {
 	bool success = true;
 
+	// Load sprites
 	textureGeo[0] = loadTexture("Sprites/triangle.png");
 	if (textureGeo[0] == NULL)
 	{
@@ -167,6 +188,9 @@ bool GameScene::loadMedia()
 		printf("Failed to load texture image!\n");
 		success = false;
 	}
+
+	//Load fonts
+	generalFont = TTF_OpenFont("Fonts/SigmarOne-Regular.ttf", 40);
 	return true;
 }
 

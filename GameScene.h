@@ -16,15 +16,15 @@ public:
 	void moveDown();
 	static bool checkCollision(SDL_Rect *rectA, SDL_Rect *rectB);
 private:
-	SDL_Rect rect1;
-	SDL_Rect rect2;
 	SDL_Rect rectPlayer;
 	SDL_Texture *textureGeo[10] = { 0 };
 	int energyPlayer;
-	int energy1;
-	int energy2;
-	Timer spawnTimer;
-	bool spawnTimerStarted;
 	int level;
 	Shape shapes[3];
+	TTF_Font *generalFont;
+	SDL_Rect levelRect;
+	std::string levelStr;
+	SDL_Color color;
+	SDL_Surface *surfaceLevel;
+	SDL_Texture *textureLevel;
 };

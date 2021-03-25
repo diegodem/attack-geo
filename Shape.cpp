@@ -33,3 +33,8 @@ void Shape::spawned()
 {
 	spawnTime = 200.f;
 }
+
+void Shape::increaseSpawnTime()
+{
+	spawnTime += 1.f;
+}
