@@ -102,7 +102,7 @@ void GameScene::update(Timer deltaTime, std::vector<SDL_Keycode> keysPressed)
 
 void GameScene::draw()
 {
-	SDL_SetRenderDrawColor(renderer, 0xCC, 0xCC, 0xCC, 0xFF);
+	SDL_SetRenderDrawColor(renderer, 0xA0, 0xC5, 0xD0, 0xFF);
 	SDL_RenderClear(renderer);
 	for (int i = 0; i < 3; i++)
 	{
