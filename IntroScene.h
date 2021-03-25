@@ -1,11 +1,11 @@
 #pragma once
 #include "Scene.h"
 
-class GameOverScene : public Scene
+class IntroScene : public Scene
 {
 public:
-	GameOverScene() = default;
-	GameOverScene(SDL_Renderer * renderer);
+	IntroScene() = default;
+	IntroScene(SDL_Renderer *renderer);
 	bool loadMedia() override;
 	void update(Timer deltaTime, std::vector<SDL_Keycode> keysPressed) override;
 	void draw() override;

@@ -1,16 +1,16 @@
-#include "TitleScene.h"
+#include "IntroScene.h"
 
-TitleScene::TitleScene(SDL_Renderer *renderer)
+IntroScene::IntroScene(SDL_Renderer *renderer)
 {
 	nextScene = -1;
 	this->renderer = renderer;
 	loadMedia();
 }
 
-bool TitleScene::loadMedia()
+bool IntroScene::loadMedia()
 {
 	bool success = false;
-	backgroundTexture = loadTexture("Sprites/background_title.png");
+	backgroundTexture = loadTexture("Sprites/background_intro.png");
 	if (backgroundTexture == NULL)
 	{
 		printf("Failed to load texture image!\n");
@@ -19,22 +19,18 @@ bool TitleScene::loadMedia()
 	return success;
 }
 
-void TitleScene::update(Timer deltaTime, std::vector<SDL_Keycode> keysPressed)
+void IntroScene::update(Timer deltaTime, std::vector<SDL_Keycode> keysPressed)
 {
 	for (int i = 0; i < keysPressed.size(); i++)
 	{
 		if (keysPressed[i] == SDLK_SPACE)
 		{
-			nextScene = (int)SceneList::INTRO_SCENE;
-		}
-		if (keysPressed[i] == SDLK_c)
-		{
-			nextScene = (int)SceneList::CREDITS_SCENE;
+			nextScene = (int)SceneList::GAME_SCENE;
 		}
 	}
 }
 
-void TitleScene::draw()
+void IntroScene::draw()
 {
 	SDL_SetRenderDrawColor(renderer, 0x88, 0x88, 0x88, 0xFF);
 	SDL_RenderClear(renderer);

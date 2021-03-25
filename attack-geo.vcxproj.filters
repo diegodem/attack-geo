@@ -39,6 +39,12 @@
     <ClCompile Include="Shape.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="CreditsScene.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="IntroScene.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -65,5 +71,77 @@
     <ClInclude Include="Shape.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="IntroScene.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="CreditsScene.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Sounds\change.wav">
+      <Filter>Archivos de recursos</Filter>
+    </Media>
+    <Media Include="Sounds\grow.wav">
+      <Filter>Archivos de recursos</Filter>
+    </Media>
+    <Media Include="Sounds\hurt.wav">
+      <Filter>Archivos de recursos</Filter>
+    </Media>
+    <Media Include="Sounds\levelup.wav">
+      <Filter>Archivos de recursos</Filter>
+    </Media>
+    <Media Include="Music\music_trim.wav">
+      <Filter>Archivos de recursos</Filter>
+    </Media>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Fonts\SigmarOne-Regular.ttf">
+      <Filter>Archivos de recursos</Filter>
+    </Font>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Sprites\background_credits.png">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="Sprites\background_gameover.png">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="Sprites\background_intro.png">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="Sprites\background_title.png">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="Sprites\decagon.png">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="Sprites\dodecagon.png">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="Sprites\eneagon.png">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="Sprites\hendecagon.png">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="Sprites\heptagon.png">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="Sprites\hexagon.png">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="Sprites\octogon.png">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="Sprites\pentagon.png">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="Sprites\square.png">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="Sprites\triangle.png">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
   </ItemGroup>
 </Project>

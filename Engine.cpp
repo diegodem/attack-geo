@@ -58,6 +58,16 @@ void Engine::loadScene(SceneList scene)
 		gameOverScene = GameOverScene(renderer);
 		currentScene = &gameOverScene;
 	}
+	else if (scene == SceneList::INTRO_SCENE)
+	{
+		introScene = IntroScene(renderer);
+		currentScene = &introScene;
+	}
+	else if (scene == SceneList::CREDITS_SCENE)
+	{
+		creditsScene = CreditsScene(renderer);
+		currentScene = &creditsScene;
+	}
 }
 
 bool Engine::init()

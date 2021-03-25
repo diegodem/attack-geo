@@ -16,6 +16,8 @@
 #include "TitleScene.h"
 #include "GameScene.h"
 #include "GameOverScene.h"
+#include "IntroScene.h"
+#include "CreditsScene.h"
 
 const int SCREEN_WIDTH = 1024;
 const int SCREEN_HEIGHT = 768;
@@ -41,4 +43,6 @@ private:
 	TitleScene titleScene;
 	GameScene gameScene;
 	GameOverScene gameOverScene;
+	IntroScene introScene;
+	CreditsScene creditsScene;
 };
