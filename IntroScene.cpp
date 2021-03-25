@@ -37,3 +37,8 @@ void IntroScene::draw()
 	SDL_RenderCopy(renderer, backgroundTexture, NULL, NULL);
 	SDL_RenderPresent(renderer);
 }
+
+void IntroScene::close()
+{
+	SDL_DestroyTexture(backgroundTexture);
+}

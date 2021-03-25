@@ -37,3 +37,8 @@ void GameOverScene::draw()
 	SDL_RenderCopy(renderer, backgroundTexture, NULL, NULL);
 	SDL_RenderPresent(renderer);
 }
+
+void GameOverScene::close()
+{
+	SDL_DestroyTexture(backgroundTexture);
+}

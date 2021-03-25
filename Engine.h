@@ -38,7 +38,7 @@ private:
 	bool initSuccess;
 	SDL_Window *window = NULL;
 	SDL_Renderer *renderer = NULL;
-	Scene *currentScene;
+	Scene *currentScene = NULL;
 	Timer deltaTime;
 	TitleScene titleScene;
 	GameScene gameScene;

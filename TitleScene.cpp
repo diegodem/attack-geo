@@ -41,3 +41,8 @@ void TitleScene::draw()
 	SDL_RenderCopy(renderer, backgroundTexture, NULL, NULL);
 	SDL_RenderPresent(renderer);
 }
+
+void TitleScene::close()
+{
+	SDL_DestroyTexture(backgroundTexture);
+}

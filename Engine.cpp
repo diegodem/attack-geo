@@ -43,6 +43,11 @@ void Engine::loop()
 
 void Engine::loadScene(SceneList scene)
 {
+	if (currentScene != NULL)
+	{
+		currentScene->close();
+	}
+
 	if (scene == SceneList::TITLE_SCENE)
 	{
 		titleScene = TitleScene(renderer);
