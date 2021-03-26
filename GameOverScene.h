@@ -12,4 +12,5 @@ public:
 	void close() override;
 private:
 	SDL_Texture *backgroundTexture = NULL;
+	Mix_Chunk *dieSound;
 };

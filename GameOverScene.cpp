@@ -5,6 +5,7 @@ GameOverScene::GameOverScene(SDL_Renderer *renderer)
 	nextScene = -1;
 	this->renderer = renderer;
 	loadMedia();
+	Mix_PlayChannel(-1, dieSound, 0);
 }
 
 bool GameOverScene::loadMedia()
@@ -14,6 +15,13 @@ bool GameOverScene::loadMedia()
 	if (backgroundTexture == NULL)
 	{
 		printf("Failed to load texture image!\n");
+		success = false;
+	}
+
+	dieSound = Mix_LoadWAV("Sounds/die.wav");
+	if (dieSound == NULL)
+	{
+		printf("Failed to load change sound effect! SDL_mixer Error: %s\n", Mix_GetError());
 		success = false;
 	}
 	return success;
