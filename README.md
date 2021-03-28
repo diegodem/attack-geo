@@ -1,6 +1,6 @@
 # Attack of the Shapes
 
-This game is done for the GeoJam 2021 in the timespan of a week.
+This game was made for the GeoJam 2021 in the timespan of a week.
 
 Attributions: Music: Ship (Spacejacked OST) by sawsquarenoise (http://rolemusic.sawsquarenoise.com/)
 
