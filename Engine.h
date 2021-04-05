@@ -40,9 +40,4 @@ private:
 	SDL_Renderer *renderer = NULL;
 	Scene *currentScene = NULL;
 	Timer deltaTime;
-	TitleScene titleScene;
-	GameScene gameScene;
-	GameOverScene gameOverScene;
-	IntroScene introScene;
-	CreditsScene creditsScene;
 };

@@ -46,32 +46,28 @@ void Engine::loadScene(SceneList scene)
 	if (currentScene != NULL)
 	{
 		currentScene->close();
+		free(currentScene);
 	}
 
 	if (scene == SceneList::TITLE_SCENE)
 	{
-		titleScene = TitleScene(renderer);
-		currentScene = &titleScene;
+		currentScene = new TitleScene(renderer);
 	}
 	else if (scene == SceneList::GAME_SCENE)
 	{
-		gameScene = GameScene(renderer);
-		currentScene = &gameScene;
+		currentScene =  new GameScene(renderer);
 	}
 	else if (scene == SceneList::GAME_OVER_SCENE)
 	{
-		gameOverScene = GameOverScene(renderer);
-		currentScene = &gameOverScene;
+		currentScene = new GameOverScene(renderer);
 	}
 	else if (scene == SceneList::INTRO_SCENE)
 	{
-		introScene = IntroScene(renderer);
-		currentScene = &introScene;
+		currentScene = new IntroScene(renderer);
 	}
 	else if (scene == SceneList::CREDITS_SCENE)
 	{
-		creditsScene = CreditsScene(renderer);
-		currentScene = &creditsScene;
+		currentScene = new CreditsScene(renderer);
 	}
 }
 
